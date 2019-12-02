@@ -51,7 +51,7 @@ import java.util.List;
 
 public class ArvoreRubroNegra<T extends Comparable<T>> {
 
-    private class NodoRubroNegro<E extends Comparable<E>> {
+    public class NodoRubroNegro<E extends Comparable<E>> {
 
         // cores possiveis
         public static final int BLACK = 0;
@@ -132,6 +132,11 @@ public class ArvoreRubroNegra<T extends Comparable<T>> {
         x.parent = y;
     }
 
+
+    //retirna raiz
+    public NodoRubroNegro getRoot(){
+        return root;
+    }
 
     // @param: x, Nodo sobre o qual o leftRotate é executado.
     // Esse método faz um update nos valores de numLeft e numRight que serão afetados pelo leftRotate.
@@ -725,19 +730,7 @@ public class ArvoreRubroNegra<T extends Comparable<T>> {
         return (nAux != null);
     }
 
-    // @param:
-    // @return: retorna
-    // Retornar
-    // Notação O ()
-    // A partir de um atributo, procurar se o objeto está armazenado na árvore (se não estiver, retorna null):
-    public T get(T objeto){
-        if (objeto == null) return null;
-        if (isEmpty()) return null;
-        NodoRubroNegro<T> nodo = searchRefNode(objeto);
-        if (nodo == null) return null;
-        T objetoNodo = nodo.key;
-        return objetoNodo;
-    }
+
 
     // @return: altura da árvore
     // Verifica qual é a altura da árvore
