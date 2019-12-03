@@ -4,7 +4,7 @@ public class AppARN {
 
     public static void main(String[] args) {
 
-        ArvoreRubroNegra<MagicCard> listaCartas = new ArvoreRubroNegra<>();
+        ArvoreRubroNegraMagicCard listaCartas = new ArvoreRubroNegraMagicCard();
 
         MagicCard card1 = new MagicCard("Dragão de Shiva", 57.50);
         MagicCard card2 = new MagicCard("Feiticeiro Pródigo", 12.40);
@@ -30,6 +30,10 @@ public class AppARN {
         //Testando método contains()
         System.out.println("\nA árvore contém a carta card5: " + listaCartas.contains(card5));
         System.out.println("A árvore contém a carta card8: " + listaCartas.contains(card8));
+
+        //Testando método get(atributo)
+        MagicCard florDeLotus = listaCartas.getObj(12000.0);
+        System.out.println("\nO objeto cujo custo é 12.000 é: " + florDeLotus);
 
         //Testando método height()
         System.out.println("\nA altura da árvore é: " + listaCartas.height());
@@ -64,8 +68,8 @@ public class AppARN {
         System.out.println(listaPos);
 
         System.out.println("\nLista das cartas ordenadas pelo método positionsWidth");
-        LinkedList <MagicCard> lista2 = listaCartas.positionsWidth();
-        System.out.println(lista2);
+        LinkedList <MagicCard> listaWidth = listaCartas.positionsWidth();
+        System.out.println(listaWidth);
 
     }
 

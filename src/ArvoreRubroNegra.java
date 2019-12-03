@@ -682,7 +682,7 @@ public class ArvoreRubroNegra<T extends Comparable<T>> {
     * @param: node, nodo a ser checado se é nil
     * @return: retorna true se for nil, caso contrário retorna false
     */
-    private boolean isNil(NodoRubroNegro node) {
+    public boolean isNil(NodoRubroNegro node) {
         return node == nil;
     }
 
