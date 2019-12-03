@@ -50,14 +50,22 @@ public class AppARN {
         System.out.println("Árvore original: " + listaCartas.positionsCentral());
         System.out.println("Árvore clonada:  " + clone.positionsCentral());
 
+        //Testando caminhamentos
+        System.out.println("\nLista das cartas ordenadas pelo método positionsPre");
+        LinkedList <MagicCard> listaPre = listaCartas.positionsPre();
+        System.out.println(listaPre);
+
         System.out.println("\nLista das cartas ordenadas por valor - método positionsCentral");
-        LinkedList <MagicCard> lista = listaCartas.positionsCentral();
-        System.out.println(lista);
+        LinkedList <MagicCard> listaCentral = listaCartas.positionsCentral();
+        System.out.println(listaCentral);
+
+        System.out.println("\nLista das cartas ordenadas pelo método positionsPos");
+        LinkedList <MagicCard> listaPos = listaCartas.positionsPos();
+        System.out.println(listaPos);
 
         System.out.println("\nLista das cartas ordenadas pelo método positionsWidth");
         LinkedList <MagicCard> lista2 = listaCartas.positionsWidth();
         System.out.println(lista2);
-
 
     }
 
