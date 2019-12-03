@@ -33,6 +33,7 @@ public class Queue<E> {
     }
 
     public E dequeue() {
+
         if (count == 0)
             throw new EmptyQueueException("Fila vazia!"); // Erro
         E aux = head.element;

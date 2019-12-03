@@ -730,21 +730,48 @@ public class ArvoreRubroNegra<T extends Comparable<T>> {
         return heightAux(root);
     }
 
-    public int heightAux(NodoRubroNegro target) {
+    private int heightAux(NodoRubroNegro target) {
         int height = 0;
         int heightLeft = 0;
         int heightRight = 0;
 
-        if (target.left == null && target.right == null) return 1;
 
-        if (target.left != null) heightLeft = height + heightAux(target.left);
-        if (target.right != null) heightRight = height + heightAux(target.right);
+        if (isNil(target.left) && isNil(target.right)) return 1;
+
+        if (isNil(target.left) == false) heightLeft = height + heightAux(target.left);
+        if (isNil(target.right) == false) heightRight = height + heightAux(target.right);
 
         if (heightLeft > heightRight) height = 1 + heightLeft;
         else height = 1 + heightRight;
 
         return height;
     }
+
+    public int height2() {
+        //Implemente este metodo (de preferencia de forma recursiva)
+        if (isEmpty()) return -1;
+        return heightAux(root);
+    }
+
+    private int heightAux2(NodoRubroNegro aux) {
+        int hAux = 1;
+        int hAuxL = 0;
+        int hAuxR = 0;
+        if (aux.left != null) {
+            hAuxL = heightAux2(aux.left);
+        }
+        if (aux.right != null) {
+            hAuxR = heightAux2(aux.right);
+        }
+
+        if (hAuxL > hAuxR) {
+            hAux = hAux + hAuxL;
+        } else {
+            hAux = hAux + hAuxR;
+        }
+        return hAux;
+    }
+
 
     /**
      * Verifica quantos elementos tem na árvore
@@ -875,8 +902,8 @@ public class ArvoreRubroNegra<T extends Comparable<T>> {
         fila.enqueue(root);
 
         while (!fila.isEmpty()) {
-            if (fila.head().left != null) fila.enqueue(fila.head().left);
-            if (fila.head().right != null) fila.enqueue(fila.head().right);
+            if (isNil(fila.head().left) == false) fila.enqueue(fila.head().left);
+            if (isNil(fila.head().right) == false) fila.enqueue(fila.head().right);
             lista.add(fila.dequeue().key);
         }
 
