@@ -32,8 +32,8 @@ public class AppARN {
         System.out.println("A árvore contém a carta card8: " + listaCartas.contains(card8));
 
         //Testando método get(atributo)
-        MagicCard florDeLotus = listaCartas.getObj(12000.0);
-        System.out.println("\nO objeto cujo custo é 12.000 é: " + florDeLotus);
+        MagicCard feiticeiro = listaCartas.getObj(12.4);
+        System.out.println("\nO objeto cujo custo é 12.4 é: " + feiticeiro);
 
         //Testando método height()
         System.out.println("\nA altura da árvore é: " + listaCartas.height());
