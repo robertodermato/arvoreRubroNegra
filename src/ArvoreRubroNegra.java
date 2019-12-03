@@ -1,46 +1,4 @@
 /*
-Design Decisions:
------------------
-I chose to use the sentinel instead of regular null pointers because it makes
-removeFixup() easier and more efficient.  Every RedBlackNode instantiated has
-all of it's pointers pointed to nil.  The root at all times will have it's
-parent pointer to nil. The remove and delete algorithm's are based on the
-course textbook and so are the leftRotate(RedBlackNode x) and
-rightRotate(RedBlackNode y) functions.
-After an insertion of an element using insert(), we always call insertFixup()
-to ensure that red-black properties are maintained.  While when deleteing, we
-only call deleteFixup when a certain condition( x == BLACK) is true.
-Since we are only concerned with deleting the key from the tree, we will begin
-our delete(RedBlackNode v) function with a call to search(v.key) which will
-ensure us that we are deleting the correct node.
-I have implemented the numSmaller(int) and numGreater(int) functions by keeping
-track of how many elements are to the left (numLeft) and to the right (numRight)
-of each node.  They both contain the number of elements to the left or right of
-a given node, not including that node itself.
-This value is updated when a node is inserted and maintained by the functions
-leftRotateFixup(RedBlackNode) and rightRotateFixup(RedBlackNode) which update
-these variables when a rotation occurs. This value is also updated during the
-deletion of a node by the function called fixNodeData(RedBlackNode, int).
-My size() function checks the size of the roots numLeft and numRight variables,
-adds them and adds one to return the answer.  This operation is performed in
-O(1) time.
-In the program, I am checking for the case where a particular RedBlackNode has
-a pointer pointing to nil, since this operation is very common, I have a
-function called isNil(RedBlackNode), which returns a boolean value of whether
-the argument is nil or not.  I have chosen my search(int key) function to be
-iterative when it easily could have been recursive because the textbook
-mentions that an iterative search is always faster than a recursive one.
-Duplicate RedBlackNodes are thought of as being slightly greater than its
-counterpart with the same key.  The insert() function takes care of this
-by having to cases in it's while loop, one for < and one for =>.  The
-function fixNodeData() takes care of this during deletion as also having two
-cases.
-I have chosen to represent, RED as the integer value 1 and BLACK as the integer
-value 0. Both these are declared as final in this class' instance variables.
-These values are assigned to the 'color' variable.
-*/
-
-/*
  * Ávore rubro-negra baseada na árvore de Zarar Siddiqi (Arsenalist)
  * disponível em: https://github.com/Arsenalist/Red-Black-Tree-Java-Implementation/blob/master/src/RedBlackTree.java
  */
@@ -138,8 +96,10 @@ public class ArvoreRubroNegra<T extends Comparable<T>> {
         return root;
     }
 
-    // @param: x, Nodo sobre o qual o leftRotate é executado.
-    // Esse método faz um update nos valores de numLeft e numRight que serão afetados pelo leftRotate.
+    /**
+    * @param: x, Nodo sobre o qual o leftRotate é executado.
+    * Esse método faz um update nos valores de numLeft e numRight que serão afetados pelo leftRotate.
+    */
     private void leftRotateFixup(NodoRubroNegro x) {
 
         // Caso 1: Somente x, x.right e x.right.right sempre são não nil.
@@ -175,8 +135,10 @@ public class ArvoreRubroNegra<T extends Comparable<T>> {
     }
 
 
-    // @param: x, nodo sobre o qual o rightRotate é executado
-    // Atualiza os valores de numLeft e numRight afetados pela rotação.
+    /**
+    * @param: x, nodo sobre o qual o rightRotate é executado
+    * Atualiza os valores de numLeft e numRight afetados pela rotação.
+    */
     private void rightRotate(NodoRubroNegro<T> y) {
 
         // chama rightRotateFixup para ajustar os valores de numRight e numLeft
@@ -208,9 +170,10 @@ public class ArvoreRubroNegra<T extends Comparable<T>> {
 
     }
 
-
-    // @param: y, nodo sobre o qual o righRotate é executado.
-    // Atualiza os valores de numLeft e numRight afetaods pela rotação
+    /**
+    * @param: y, nodo sobre o qual o righRotate é executado.
+    * Atualiza os valores de numLeft e numRight afetaods pela rotação
+    */
     private void rightRotateFixup(NodoRubroNegro y) {
 
         // Caso 1: Somente y, y.left e y.left.left existem.
@@ -247,14 +210,15 @@ public class ArvoreRubroNegra<T extends Comparable<T>> {
 
     }
 
-    // @param: novoNodo, objeto a ser inserido
-    // Adiciona elementos na árvore
-    // Notação O (log n)
+    /**
+    * @param: novoNodo, objeto a ser inserido
+    * Adiciona elementos na árvore
+    * Notação O (log n)
+    */
     public void add(T novoNodo) {
         add(new NodoRubroNegro<T>(novoNodo));
     }
 
-    // @param: novoNodo, nodo a ser inserido
     // insere novoNodo no local adequado e faz update nos valores de numLeft e numRight.
     private void add(NodoRubroNegro<T> novoNodo) {
 
@@ -304,8 +268,10 @@ public class ArvoreRubroNegra<T extends Comparable<T>> {
     }
 
 
-    // @param: novoNodo, nodo  que foi inserido e que pode ter causado violação nas regras da ARN
-    // Arruma as propriedades da ARN
+    /**
+    * @param: novoNodo, nodo  que foi inserido e que pode ter causado violação nas regras da ARN
+    * Arruma as propriedades da ARN
+    */
     private void insertFixup(NodoRubroNegro<T> novoNodo) {
 
         NodoRubroNegro<T> y = nil;
@@ -378,10 +344,11 @@ public class ArvoreRubroNegra<T extends Comparable<T>> {
 
     }
 
-    // @param: node, um nodo
-    // @return: node, retorna o nodo com a menor key com raiz em node
+    /**
+    * @param: node, um nodo
+    * @return: node, retorna o nodo com a menor key com raiz em node
+    */
     public NodoRubroNegro<T> getSmallest(NodoRubroNegro<T> node) {
-
         while (!isNil(node.left))
             node = node.left;
         return node;
