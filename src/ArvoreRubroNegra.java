@@ -90,7 +90,6 @@ public class ArvoreRubroNegra<T extends Comparable<T>> {
         x.parent = y;
     }
 
-
     //retirna raiz
     public NodoRubroNegro getRoot(){
         return root;
@@ -133,7 +132,6 @@ public class ArvoreRubroNegra<T extends Comparable<T>> {
         }
 
     }
-
 
     /**
     * @param: x, nodo sobre o qual o rightRotate é executado
@@ -211,10 +209,12 @@ public class ArvoreRubroNegra<T extends Comparable<T>> {
     }
 
     /**
-    * @param: novoNodo, objeto a ser inserido
-    * Adiciona elementos na árvore
-    * Notação O (log n)
-    */
+     * Adiciona elementos na árvore
+     *
+     * @param: novoNodo, objeto a ser inserido
+     *
+     * Notação O (log n)
+     */
     public void add(T novoNodo) {
         add(new NodoRubroNegro<T>(novoNodo));
     }
@@ -354,10 +354,10 @@ public class ArvoreRubroNegra<T extends Comparable<T>> {
         return node;
     }
 
-
-    // @param: x, um nodo cujo sucessor queremos achar
-    // @return: retorna o nodo com a maior chave a partir de x.key
-    // from x.key
+    /**
+    * @param: x, um nodo cujo sucessor queremos achar
+    * @return: retorna o nodo com a maior chave a partir de x.key
+    */
     public NodoRubroNegro<T> treeSuccessor(NodoRubroNegro<T> x) {
 
         // se x.left não for nulo, chama getSmallest à direita, ou seja, o segundo maior valor depois de x.key
@@ -375,9 +375,10 @@ public class ArvoreRubroNegra<T extends Comparable<T>> {
         return y;
     }
 
-
-    // @param: v, nodo que será removido
-    // Remove v
+    /**
+    * @param: v, nodo que será removido
+    * Remove v
+    */
     public void remove(NodoRubroNegro<T> v) {
 
         NodoRubroNegro<T> z = searchRefNode(v.key);
@@ -426,9 +427,10 @@ public class ArvoreRubroNegra<T extends Comparable<T>> {
             removeFixup(x);
     }
 
-
-    // @param: y, nodo que foi deletado da ARN
-    // @param: key, valor da key que estava no y originalmente
+    /**
+    * @param: y, nodo que foi deletado da ARN
+    * @param: key, valor da key que estava no y originalmente
+    */
     private void fixNodeData(NodoRubroNegro<T> x, NodoRubroNegro<T> y) {
 
         NodoRubroNegro<T> current = nil;
@@ -482,8 +484,10 @@ public class ArvoreRubroNegra<T extends Comparable<T>> {
 
     }
 
-    // @param: x, o filho do nodo deletado pelo remove
-    // Restaura as propriedades da ARN que podem ter sido violadas durante o remove
+    /**
+    * @param: x, o filho do nodo deletado pelo remove
+    * Restaura as propriedades da ARN que podem ter sido violadas durante o remove
+    */
     private void removeFixup(NodoRubroNegro<T> x) {
 
         NodoRubroNegro<T> w;
@@ -568,10 +572,11 @@ public class ArvoreRubroNegra<T extends Comparable<T>> {
         x.color = NodoRubroNegro.BLACK;
     }
 
-
-    // @param: key, a key de cujo nodo estamos procurando
-    // @return: retorna um nodo com a key. Se não encontrar retorn nulo
-    // notação O(log n)
+    /**
+    * @param: key, a key de cujo nodo estamos procurando
+    * @return: retorna um nodo com a key. Se não encontrar retorn nulo
+    * notação O(log n)
+    */
     public NodoRubroNegro<T> searchRefNode(T key) {
 
         // Inicializa com a raiz para percorrer toda árvore
@@ -592,23 +597,28 @@ public class ArvoreRubroNegra<T extends Comparable<T>> {
         return null;
     }
 
-    // @param: key, qualquer objeto com Comparable
-    // @return: retorna o número de elementos maiores que key
+    /**
+    * @param: key, qualquer objeto com Comparable
+    * @return: retorna o número de elementos maiores que key
+    */
     public int numGreater(T key) {
         return findNumGreater(root, key);
     }
 
-    // @param: key, qualquer objeto com Comparable
-    // @return: retorna o número de elementos menores que key
+    /**
+    * @param: key, qualquer objeto com Comparable
+    * @return: retorna o número de elementos menores que key
+    */
     public int numSmaller(T key) {
         return findNumSmaller(root, key);
     }
 
-    // @param node, a raiz da árvore
-    // @param key, a key que desejamos comparar
-    // @return: retorna o número de nodos maiores que key
+    /**
+    * @param node, a raiz da árvore
+    * @param key, a key que desejamos comparar
+    * @return: retorna o número de nodos maiores que key
+    */
     public int findNumGreater(NodoRubroNegro<T> node, T key) {
-
         if (isNil(node))
             return 0;
 
@@ -624,7 +634,7 @@ public class ArvoreRubroNegra<T extends Comparable<T>> {
     }
 
     /**
-     * retorna uma lista organizada de keys maiores que key. Tamanho da lista não será maior que maxReturned
+     * Retorna uma lista organizada de keys maiores que key. Tamanho da lista não será maior que maxReturned
      *
      * @param key         Key a ser procurada
      * @param maxReturned número máximo de resultados
@@ -635,7 +645,6 @@ public class ArvoreRubroNegra<T extends Comparable<T>> {
         getGreaterThan(root, key, list);
         return list.subList(0, Math.min(maxReturned, list.size()));
     }
-
 
     private void getGreaterThan(NodoRubroNegro<T> node, T key,
                                 List<T> list) {
@@ -650,9 +659,11 @@ public class ArvoreRubroNegra<T extends Comparable<T>> {
         }
     }
 
-    // @param: node, a raiz da árvore
-    // @param key, key a ser comparada
-    // @return: retorna o número de nodos menores que key
+    /**
+    * @param: node, a raiz da árvore
+    * @param key, key a ser comparada
+    * @return: retorna o número de nodos menores que key
+    */
     public int findNumSmaller(NodoRubroNegro<T> node, T key) {
 
         if (isNil(node)) return 0;
@@ -667,16 +678,22 @@ public class ArvoreRubroNegra<T extends Comparable<T>> {
 
     }
 
-    // @param: node, nodo a ser checado se é nil
-    // @return: retorna true se for nil, caso contrário retorna false
+    /**
+    * @param: node, nodo a ser checado se é nil
+    * @return: retorna true se for nil, caso contrário retorna false
+    */
     private boolean isNil(NodoRubroNegro node) {
         return node == nil;
     }
 
-    // @param: objeto, objeto cujo pai queremos encontrar
-    // @return: retorna o objeto contigo no nodo pai do objeto fornecido
-    // Retornar o pai de um elemento: obj getParent(obj)
-    // Notação O (log n), pois usa o searchRefNode
+    /**
+     * Retorna o pai de um objeto fornecido
+     *
+     * @param: objeto, objeto cujo pai queremos encontrar
+     * @return: retorna o objeto contigo no nodo pai do objeto fornecido
+     *
+     * Notação O (log n), pois usa o searchRefNode
+     */
     public T getParent(T objeto) {
         if (objeto == null) return null;
         if (isEmpty()) return null;
@@ -688,20 +705,26 @@ public class ArvoreRubroNegra<T extends Comparable<T>> {
         return objetoPai;
     }
 
-    // @param: objeto, objeto que queremos saber se existe ou não na árvore
-    // @return: retorna true se o objeto existir, em caso contrário, retorna false
-    // Notação O (log n), pois usa o searchRefNode
-    // Verifica se um elemento está armazenado na árvore ou não
+    /**
+     * Verifica se um elemento está armazenado na árvore ou não
+     *
+     * @param: objeto, objeto que queremos saber se existe ou não na árvore
+     * @return: retorna true se o objeto existir, em caso contrário, retorna false
+     *
+     * Notação O (log n), pois usa o searchRefNode
+     */
     public boolean contains(T objeto) {
         NodoRubroNegro<T> nAux = searchRefNode(objeto);
         return (nAux != null);
     }
 
-
-
-    // @return: altura da árvore
-    // Verifica qual é a altura da árvore
-    // Notação O (n)
+    /**
+     * Retorna a altura da árvore
+     *
+     * @return: altura da árvore
+     *
+     * Notação O (n)
+     */
     public int height() {
         if (isEmpty()) return -1;
         return heightAux(root);
@@ -723,19 +746,25 @@ public class ArvoreRubroNegra<T extends Comparable<T>> {
         return height;
     }
 
-    // @return: o número de elementos da árvore
-    // Verifica quantos elementos tem na árvore
-    // Notação O (1)
-    // @return: retorna o tamanho da árvore
+    /**
+     * Verifica quantos elementos tem na árvore
+     *
+     * @return: o número de elementos da árvore
+     *
+     * Notação O (1)
+     */
     public int size() {
-
         // soma os elementos da esquerda e os da direita, mais a raiz
         return root.numLeft + root.numRight + 1;
     }
 
-    // @return: retorna true se a árvore está vazia, ou seja se size() é zero, caso contrário retorna false
-    // Verifica se a árvore está vazia ou não
-    // Notação O (1)
+    /**
+     * Verifica se a árvore está vazia ou não
+     *
+     * @return: retorna true se a árvore está vazia, ou seja se size() é zero, caso contrário retorna false
+     *
+     * Notação O (1)
+     */
     public boolean isEmpty() {
         return size() == 0;
     }
@@ -743,9 +772,10 @@ public class ArvoreRubroNegra<T extends Comparable<T>> {
      /**
      * Retorna uma cópia da árvore.
      *
-     * @return ArvoreRubroNegra com uma cópia desta árvore.
+     * @return ArvoreRubroNegra, uma cópia desta árvore.
+     *
+     * Notação O (n)
      */
-     // Notação O (n)
     @Override
     public ArvoreRubroNegra clone() {
         ArvoreRubroNegra clone = new ArvoreRubroNegra();
@@ -767,6 +797,8 @@ public class ArvoreRubroNegra<T extends Comparable<T>> {
      * caminhamento central. Chama um método auxiliar recursivo.
      *
      * @return LinkedList, lista com os elementos da árvore
+     *
+     * Notação O (n)
      */
     public LinkedList positionsCentral() {
         LinkedList lista = new LinkedList();
@@ -787,6 +819,8 @@ public class ArvoreRubroNegra<T extends Comparable<T>> {
      * caminhamento pré. Chama um método auxiliar recursivo.
      *
      * @return LinkedList, lista com os elementos da árvore
+     *
+     * Notação O (n)
      */
     public LinkedList positionsPre() {
         LinkedList lista = new LinkedList();
@@ -807,6 +841,8 @@ public class ArvoreRubroNegra<T extends Comparable<T>> {
      * caminhamento pós. Chama um método auxiliar recursivo.
      *
      * @return LinkedList, lista com os elementos da árvore
+     *
+     * Notação O (n)
      */
     public LinkedList positionsPos() {
         LinkedList lista = new LinkedList();
@@ -827,6 +863,8 @@ public class ArvoreRubroNegra<T extends Comparable<T>> {
      * caminhamento em largura.
      *
      * @return LinkedList, lista com os elementos da árvore
+     *
+     * Notação O (n)
      */
     public LinkedList positionsWidth() {
         Queue<NodoRubroNegro> fila = new Queue<>();
