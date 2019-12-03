@@ -781,6 +781,7 @@ public class ArvoreRubroNegra<T extends Comparable<T>> {
      * Notação O (1)
      */
     public int size() {
+        if (isNil(root)) return 0;
         // soma os elementos da esquerda e os da direita, mais a raiz
         return root.numLeft + root.numRight + 1;
     }
@@ -793,7 +794,7 @@ public class ArvoreRubroNegra<T extends Comparable<T>> {
      * Notação O (1)
      */
     public boolean isEmpty() {
-        return size() == 0;
+        return isNil(root);
     }
 
      /**
@@ -811,7 +812,7 @@ public class ArvoreRubroNegra<T extends Comparable<T>> {
     }
 
     private void cloneAux(NodoRubroNegro n, ArvoreRubroNegra clone) {
-        if (n != null) {
+        if (isNil(n) == false) {
             clone.add(n.key);
             cloneAux(n.left, clone);
             cloneAux(n.right, clone);

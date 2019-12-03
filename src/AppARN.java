@@ -15,7 +15,7 @@ public class AppARN {
 
         MagicCard card8 = new MagicCard("Não será adicionada na ARN", 0.0);
 
-        //Testando método add
+        //Testando método add()
         listaCartas.add(card1);
         listaCartas.add(card2);
         listaCartas.add(card3);
@@ -23,22 +23,32 @@ public class AppARN {
         listaCartas.add(card5);
         listaCartas.add(card6);
 
-        //Testando métod getParent
+        //Testando métod getParent()
         MagicCard pai = listaCartas.getParent(card5);
         System.out.println("\nO pai da carta " + card5 + " é: " + pai);
 
-        //Testando método contains
+        //Testando método contains()
         System.out.println("\nA árvore contém a carta card5: " + listaCartas.contains(card5));
-        System.out.println("\nA árvore contém a carta card8: " + listaCartas.contains(card8));
+        System.out.println("A árvore contém a carta card8: " + listaCartas.contains(card8));
 
-        //Testando método height
+        //Testando método height()
         System.out.println("\nA altura da árvore é: " + listaCartas.height());
 
-        //Testando método
+        //Testando método size()
+        System.out.println("\nO tamanho da árvore é: " + listaCartas.size());
 
-        //Testando método
+        //Testando método isEmpty()
+        ArvoreRubroNegra<MagicCard> arvoreVazia = new ArvoreRubroNegra<>();
+        System.out.println("\nA árvore está vazia: " + listaCartas.isEmpty());
+        System.out.println("A árvore vazia está vazia: " + arvoreVazia.isEmpty());
+        System.out.println("Tamanho da vazia é: " + arvoreVazia.size());
 
-        //Testando método
+        //Testando método clone()
+        ArvoreRubroNegra clone = listaCartas.clone();
+        System.out.println("\nÁrvore original: " + listaCartas);
+        System.out.println("Árvore clonada:  " + clone);
+        System.out.println("Árvore original: " + listaCartas.positionsCentral());
+        System.out.println("Árvore clonada:  " + clone.positionsCentral());
 
         System.out.println("\nLista das cartas ordenadas por valor - método positionsCentral");
         LinkedList <MagicCard> lista = listaCartas.positionsCentral();
