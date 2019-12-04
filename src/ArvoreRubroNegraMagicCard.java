@@ -23,12 +23,12 @@ public class ArvoreRubroNegraMagicCard extends ArvoreRubroNegra<MagicCard> {
     private MagicCard getAux (Double custo, NodoRubroNegro<MagicCard> nodo){
 
         if (isNil(nodo) == false && nodo.key != null) {
-            if (custo == nodo.key.getCusto()) return nodo.key;
-            if (custo < nodo.key.getCusto() ) getAux(custo, nodo.left);
-            if (custo > nodo.key.getCusto()) getAux(custo, nodo.right);
+            if (custo.equals(nodo.key.getCusto())) return nodo.key;
+            if (isNil(nodo.left) == false && custo < nodo.key.getCusto() ) getAux(custo, nodo.left);
+            if (isNil(nodo.right) == false && custo > nodo.key.getCusto()) getAux(custo, nodo.right);
         }
 
-        return nodo.key;
+        return null;
     }
 
 
